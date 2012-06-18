@@ -14,7 +14,9 @@ CLI Interface
 ::
 
 fpo 1200x700 image1.jpg
+
 fpo fit-height 1200x700 image1.jpg
+
 fpo fit-box 1200x700 image1.jpg
 
 fpo -o peta 1200x700 image1.jpg
