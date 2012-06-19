@@ -5,3 +5,6 @@
 website/static/gen
 ;website/static/gen/js
 project_files/*.jar
+docs/_build/
+docs/_static/
+docs/_templates/
