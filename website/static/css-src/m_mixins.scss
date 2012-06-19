@@ -1,0 +1,122 @@
+@mixin shadow($offset_x, $offset_y, $blur_radius, $color) {
+    -moz-box-shadow: $offset_x $offset_y $blur_radius $color; /* FF3.5+ */
+    -webkit-box-shadow: $offset_x $offset_y $blur_radius $color; /* Saf3.0+, Chrome */
+    box-shadow: $offset_x $offset_y $blur_radius $color; /* Opera 10.5, IE 9.0 */
+}
+@mixin shadow_inner($offset_x, $offset_y, $blur_radius, $color) {
+    -moz-box-shadow: inset $offset_x $offset_y $blur_radius $color; /* FF3.5+ */
+    -webkit-box-shadow: inset $offset_x $offset_y $blur_radius $color; /* Saf3.0+, Chrome */
+    box-shadow: inset $offset_x $offset_y $blur_radius $color; /* Opera 10.5, IE 9.0 */
+}
+@mixin no_shadow() {
+    -moz-box-shadow: none; /* FF3.5+ */
+    -webkit-box-shadow: none; /* Saf3.0+, Chrome */
+    box-shadow: none; /* Opera 10.5, IE 9.0 */
+}
+
+@mixin opacity($num) {
+    $num2: $num*100;
+    opacity: $num;
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$num2})';
+    filter: alpha(opacity=$num2);
+}
+
+@mixin transition($time, $property: all, $ease: ease-out, $delay: 0s) {
+    -moz-transition: $property $time $ease $delay;
+    -o-transition: $property $time $ease $delay;
+    -webkit-transition: $property $time $ease $delay;
+    -ms-transition: $property $time $ease $delay;
+    transition: $property $time $ease $delay;
+}
+@mixin transition_none() {
+    -moz-transition: none;
+    -o-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+}
+@mixin transition_delay($time) {
+    -webkit-transition-delay: $time;
+    -moz-transition-delay: $time;
+    -o-transition-delay: $time;
+    -ms-transition-delay: $time;
+    transition-delay: $time;
+}
+@mixin transform($property) {
+    -moz-transform: $property;
+    -o-transform: $property;
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+@mixin box_model {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin no_select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -user-select: none;
+}
+
+@mixin font-size($font-size: 16) {
+    $rem: ($font-size / 16);
+    font-size: $font-size * 1px;
+    font-size: $rem + rem;
+}
+
+@mixin sprite($top: 0, $left: 0, $color: transparent) {
+    background: $color url(../../img/sprite.v7.png) $top $left no-repeat;
+}
+
+@mixin gradient($start, $end, $direction: vertical, $start_pos: 0%, $end_pos: 100%) {
+    $ie_start: ie-hex-str($start);
+    $ie_end: ie-hex-str($end);
+
+    background: $start; /* Old browsers */
+    @if $direction == vertical {
+        background: -moz-linear-gradient(top, $start $start_pos, $end $end_pos); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop($start_pos,$start), color-stop($end_pos,$end)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top, $start $start_pos,$end $end_pos); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top, $start $start_pos,$end $end_pos); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top, $start $start_pos,$end $end_pos); /* IE10+ */
+        background: linear-gradient(top, $start $start_pos,$end $end_pos); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$ie_start}', endColorstr='#{$ie_end}',GradientType=0); /* IE6-9 */
+    } @else {
+        background: -moz-linear-gradient(left, $start $start_pos, $end $end_pos); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, right top, color-stop($start_pos,$start), color-stop($end_pos,$end)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(left, $start $start_pos,$end $end_pos); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(left, $start $start_pos,$end $end_pos); /* Opera 11.10+ */
+        background: -ms-linear-gradient(left, $start $start_pos,$end $end_pos); /* IE10+ */
+        background: linear-gradient(left, $start $start_pos,$end $end_pos); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$ie_start}', endColorstr='#{$ie_end}',GradientType=1); /* IE6-9 */
+    }
+}
+
+@mixin border_radius($px) {
+    -webkit-border-radius: $px;
+    -moz-border-radius: $px;
+    border-radius: $px;
+}
+
+@mixin ir() {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.group:before,
+.group:after {
+    content: '';
+    display: table;
+}
+.group:after {
+    clear: both;
+}
+.group {
+    position: relative;
+    zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
