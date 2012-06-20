@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.register_blueprint(admin, url_prefix="/admin")
 app.register_blueprint(site)
 
-env = dev
+env = 'dev'
 if env == 'dev':
     app.debug = True
 
