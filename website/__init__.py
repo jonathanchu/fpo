@@ -12,9 +12,7 @@ app.register_blueprint(admin, url_prefix="/admin")
 app.register_blueprint(site)
 
 
-env = os.getenv('mm_env', 'production')
-if env == 'dev':
-    app.debug = True
+app.debug = True
 
 app.jinja_env.filters['timestamped'] = timestamped
 
