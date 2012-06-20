@@ -9,20 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="stylesheet" href="{{ '/static/gen/css/site.css'|timestamped }}">
-
 </head>
 <body>
 
 {% block content %}{% endblock %}
-
-{% if env == 'dev' %}
-<script data-main="/static/js-src/app.dev.js" src="/static/js-src/lib/require/require.js"></script>
-{% else %}
-<script src="{{ '/static/gen/js/main.js'|timestamped }}"></script>
-<script type="text/javascript">
-    require(["main"]);
-</script>
-{% endif %}
 
 {% if env == 'production' %}
 <script type="text/javascript">

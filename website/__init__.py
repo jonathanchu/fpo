@@ -3,7 +3,14 @@ from utility import timestamped
 import re
 import os
 
+from blueprints.admin import admin
+from blueprints.front import site
+
 app = Flask(__name__)
+
+app.register_blueprint(admin, url_prefix="/admin")
+app.register_blueprint(site)
+
 
 env = os.getenv('mm_env', 'production')
 if env == 'dev':
@@ -16,9 +23,10 @@ app.jinja_env.globals.update({
 })
 
 
-@app.route("/")
-def hello():
-    return render_template('index.html')
+@app.route("/i/<gid>/<path:path>")
+def image(gid, path):
+    app.logger.debug("Image request -  gid: %s, path: %s" % (gid, path))
+    return ''
 
 @app.route("/favicon.ico")
 def favicon():
