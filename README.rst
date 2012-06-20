@@ -1,7 +1,10 @@
 ===
 FPO
 ===
-FPO aims to be the be-all solution to your FPO'in image needs. You doing a project for PETA? God knows you don't want that delicious burger showing up in your comps by mistake. Does your company work exclusively with the government? Then of course everyone in that hot new responsive design should be in desert camo. FPO gives your organization complete control over your designers' image assets. 
+
+.. image:: https://secure.travis-ci.org/jonathanchu/fpo.png?branch=master
+
+FPO aims to be the be-all solution to your FPO'in image needs. You doing a project for PETA? God knows you don't want that delicious burger showing up in your comps by mistake. Does your company work exclusively with the government? Then of course everyone in that hot new responsive design should be in desert camo. FPO gives your organization complete control over your designers' image assets.
 
 Features
 --------
