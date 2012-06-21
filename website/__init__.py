@@ -3,6 +3,7 @@ from utility import timestamped
 import re
 import os
 
+from flask.ext.sqlalchemy import SQLAlchemy
 from blueprints.admin import admin
 from blueprints.front import site
 
@@ -11,7 +12,10 @@ app = Flask(__name__)
 app.register_blueprint(admin, url_prefix="/admin")
 app.register_blueprint(site)
 
-env = 'dev'
+app.config.from_object('settings')
+db = SQLAlchemy(app)
+
+env = os.getenv('mm_env', 'production')
 if env == 'dev':
     app.debug = True
 
@@ -21,6 +25,36 @@ app.jinja_env.globals.update({
     'env': env
 })
 
+# should moves this to models.py when app gets fleshed out more
+class User(db.Model):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    username = Column(String(50), unique=True)
+    email = Column(String(120), unique=True)
+    pw_hash = Column(String(128), unique=True)
+
+    def __init__(self, username=None, email=None):
+        self.username = username
+        self.email = email
+
+    def __repr__(self):
+        return '<User %r>' % (self.username)
+
+class Group(db.Model):
+    __tablename__ = 'groups'
+    id = Column(Integer, primary_key=True)
+    name = Column(String())
+
+    def __init__(self, name=None):
+        self.name = name
+
+    def __repr__(self):
+        return '<Group %r>' % (self.name)
+
+try:
+    db.create_all()
+except Exception:
+    pass
 
 @app.route("/i/<gid>/<path:path>")
 def image(gid, path):
