@@ -4,6 +4,8 @@ import re
 import os
 
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String
+
 from blueprints.admin import admin
 from blueprints.front import site
 
@@ -12,7 +14,7 @@ app = Flask(__name__)
 app.register_blueprint(admin, url_prefix="/admin")
 app.register_blueprint(site)
 
-app.config.from_object('settings')
+app.config.from_object('website.settings')
 db = SQLAlchemy(app)
 
 env = os.getenv('mm_env', 'production')
