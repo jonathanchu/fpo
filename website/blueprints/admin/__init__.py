@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template
 
-admin = Blueprint('admin', __name__,
+bp = Blueprint('admin', __name__,
     template_folder='templates'
 )
 
-@admin.route('/')
+@bp.route('/')
 def index():
     return "This is the admin"

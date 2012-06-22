@@ -15,3 +15,7 @@ def sass_watch():
 def bootstrap():
     #http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.7.zip
     pass
+
+def test():
+    local('python website/tests/test_views.py')
+    pass

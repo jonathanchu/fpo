@@ -6,13 +6,13 @@ import os
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, String
 
-from blueprints.admin import admin
-from blueprints.front import site
+from blueprints.admin import bp as admin_bp
+from blueprints.login import bp as login_bp
 
 app = Flask(__name__)
 
-app.register_blueprint(admin, url_prefix="/admin")
-app.register_blueprint(site)
+app.register_blueprint(admin_bp, url_prefix="/admin")
+app.register_blueprint(login_bp)
 
 app.config.from_object('website.settings')
 db = SQLAlchemy(app)
