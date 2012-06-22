@@ -5,4 +5,4 @@ python:
 # before_script:
 #   - psql -c 'create database fpo;' -U postgres
 install: pip install -r requirements.txt --use-mirrors
-script: python website/tests/test_views.py
+script: cd website/tests/ && python test_views.py
